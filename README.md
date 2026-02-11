@@ -1,80 +1,80 @@
-# 🔗 Encurtador de URL
+# 🔗 URL Shortener
 
-API REST para encurtar URLs, com rastreamento de cliques e redirecionamento automático.
+REST API for shortening URLs, with click tracking and automatic redirection.
 
-## 📋 Funcionalidades
+## 📋 Features
 
-- ✅ Encurtar URLs longas gerando códigos únicos
-- ✅ Redirecionamento automático para URL original
-- ✅ Rastreamento de cliques em tempo real
-- ✅ Listagem de links criados
-- ✅ Persistência de dados com SQLite
+- ✅ Shorten long URLs by generating unique codes
+- ✅ Automatic redirection to original URL
+- ✅ Real-time click tracking
+- ✅ List created links
+- ✅ Data persistence with SQLite
 
-## 🚀 Tecnologias
+## 🚀 Technologies
 
-- **[Node.js](https://nodejs.org/)** - Runtime JavaScript
-- **[Express](https://expressjs.com/)** - Framework web minimalista
-- **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado de JavaScript
-- **[Prisma](https://www.prisma.io/)** - ORM moderno para Node.js
-- **[SQLite](https://www.sqlite.org/)** - Banco de dados relacional leve
-- **[Better SQLite3](https://github.com/WiseLibs/better-sqlite3)** - Driver SQLite de alta performance
+- **[Node.js](https://nodejs.org/)** - JavaScript runtime
+- **[Express](https://expressjs.com/)** - Minimalist web framework
+- **[TypeScript](https://www.typescriptlang.org/)** - Typed superset of JavaScript
+- **[Prisma](https://www.prisma.io/)** - Modern ORM for Node.js
+- **[SQLite](https://www.sqlite.org/)** - Lightweight relational database
+- **[Better SQLite3](https://github.com/WiseLibs/better-sqlite3)** - High-performance SQLite driver
 
-## 📦 Pré-requisitos
+## 📦 Prerequisites
 
-- Node.js 18+ ou Bun
-- npm ou bun
+- Node.js 18+ or Bun
+- npm or bun
 
-## 🔧 Instalação
+## 🔧 Installation
 
-1. **Clone o repositório:**
+1. **Clone the repository:**
 
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd api
 ```
 
-2. **Instale as dependências:**
+2. **Install dependencies:**
 
 ```bash
 npm install
-# ou
+# or
 bun install
 ```
 
-3. **Configure as variáveis de ambiente:**
+3. **Configure environment variables:**
 
-Crie um arquivo `.env` na raiz do projeto:
+Create a `.env` file in the project root:
 
 ```env
 PORT=3000
 DATABASE_URL="file:./dev.db"
 ```
 
-4. **Execute as migrações do banco de dados:**
+4. **Run database migrations:**
 
 ```bash
 npx prisma migrate dev
 ```
 
-5. **Gere o Prisma Client:**
+5. **Generate Prisma Client:**
 
 ```bash
 npx prisma generate
 ```
 
-## ▶️ Executando o projeto
+## ▶️ Running the project
 
-### Modo desenvolvimento
+### Development mode
 
 ```bash
 npm run dev
-# ou
+# or
 bun run dev
 ```
 
-O servidor estará rodando em `http://localhost:3000`
+The server will be running at `http://localhost:3000`
 
-## 📡 Endpoints da API
+## 📡 API Endpoints
 
 ### 1. Health Check
 
@@ -82,7 +82,7 @@ O servidor estará rodando em `http://localhost:3000`
 GET /ping
 ```
 
-**Resposta:**
+**Response:**
 
 ```json
 {
@@ -90,18 +90,18 @@ GET /ping
 }
 ```
 
-### 2. Criar link encurtado
+### 2. Create shortened link
 
 ```http
 POST /links
 Content-Type: application/json
 
 {
-  "original": "https://exemplo.com/url-muito-longa"
+  "original": "https://example.com/very-long-url"
 }
 ```
 
-**Resposta:**
+**Response:**
 
 ```json
 {
@@ -110,66 +110,66 @@ Content-Type: application/json
 }
 ```
 
-### 3. Redirecionar para URL original
+### 3. Redirect to original URL
 
 ```http
 GET /:code
 ```
 
-Exemplo: `GET /abc123`
+Example: `GET /abc123`
 
-Redireciona (HTTP 302) para a URL original e incrementa o contador de cliques.
+Redirects (HTTP 302) to the original URL and increments the click counter.
 
-## 🗄️ Estrutura do Banco de Dados
+## 🗄️ Database Structure
 
 ### Model: Link
 
-| Campo     | Tipo     | Descrição                         |
-| --------- | -------- | --------------------------------- |
-| id        | String   | ID único (CUID)                   |
-| original  | String   | URL original                      |
-| shortCode | String   | Código curto único (6 caracteres) |
-| clicks    | Int      | Contador de cliques               |
-| createdAt | DateTime | Data de criação                   |
+| Field     | Type     | Description                 |
+| --------- | -------- | --------------------------- |
+| id        | String   | Unique ID (CUID)            |
+| original  | String   | Original URL                |
+| shortCode | String   | Unique short code (6 chars) |
+| clicks    | Int      | Click counter               |
+| createdAt | DateTime | Creation date               |
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 api/
 ├── prisma/
-│   ├── schema.prisma       # Schema do banco de dados
-│   └── migrations/         # Migrações do Prisma
+│   ├── schema.prisma       # Database schema
+│   └── migrations/         # Prisma migrations
 ├── src/
 │   ├── db/
-│   │   └── db-config.ts    # Configuração do adapter SQLite
+│   │   └── db-config.ts    # SQLite adapter configuration
 │   ├── links/
-│   │   └── route.ts        # Rotas de links
-│   └── index.ts            # Servidor principal
+│   │   └── route.ts        # Links routes
+│   └── index.ts            # Main server
 ├── package.json
 ├── tsconfig.json
 ├── prisma.config.ts
-└── .env                    # Variáveis de ambiente (criar)
+└── .env                    # Environment variables (create this)
 ```
 
-## 🛠️ Scripts Disponíveis
+## 🛠️ Available Scripts
 
-- `npm run dev` - Inicia o servidor em modo de desenvolvimento com hot reload
-- `npx prisma studio` - Abre interface visual do banco de dados
-- `npx prisma migrate dev` - Cria e aplica novas migrações
-- `npx prisma generate` - Gera o Prisma Client
+- `npm run dev` - Start server in development mode with hot reload
+- `npx prisma studio` - Open visual database interface
+- `npx prisma migrate dev` - Create and apply new migrations
+- `npx prisma generate` - Generate Prisma Client
 
-## 📝 Exemplo de uso
+## 📝 Usage Example
 
 ```bash
-# Criar um link encurtado
+# Create a shortened link
 curl -X POST http://localhost:3000/links \
   -H "Content-Type: application/json" \
   -d '{"original": "https://github.com/prisma/prisma"}'
 
-# Acessar o link encurtado (via navegador ou curl)
+# Access the shortened link (via browser or curl)
 curl -L http://localhost:3000/abc123
 ```
 
 ## 🔒 Graceful Shutdown
 
-O servidor está configurado para desconectar o Prisma Client de forma segura ao receber o sinal SIGINT (Ctrl+C).
+The server is configured to safely disconnect the Prisma Client when receiving the SIGINT signal (Ctrl+C).
