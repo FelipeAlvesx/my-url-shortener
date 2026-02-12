@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import express from "express";
 import "dotenv/config";
 import { adapter } from "./db/db-config.ts";
-import { linkRouter } from "./links/route.ts";
+import { linkRouter } from "./routes/route.ts";
 
 const app = express();
 const PORT = process.env.PORT;
