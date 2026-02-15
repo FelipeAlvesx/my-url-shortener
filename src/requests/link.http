@@ -1,4 +1,4 @@
-@base_url=http://localhost:3000
+@base_url=http://localhost
 @token={{login.response.body.token}}
 
 GET {{base_url}}/health/ping
@@ -20,7 +20,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "original": "http=://escola.formacao"
+    "original": "http://escola.formacao.dev"
 }
 
 ### redirect link endpoint
