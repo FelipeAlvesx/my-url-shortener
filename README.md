@@ -10,12 +10,9 @@ REST API for shortening URLs, with click tracking and automatic redirection.
 - ✅ Real-time click tracking
 - ✅ List all created links
 - ✅ JWT authentication system
-- ✅ User registration and login
 - ✅ Protected routes with JWT middleware
 - ✅ Interactive API documentation with Swagger/OpenAPI
-- ✅ Data persistence with SQLite
 - ✅ Configurable base URL for shortened links
-- ✅ Graceful shutdown
 
 ## 🚀 Technologies
 
