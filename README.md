@@ -12,6 +12,8 @@ REST API for shortening URLs, with click tracking and automatic redirection.
 - ✅ JWT authentication system
 - ✅ Protected routes with JWT middleware
 - ✅ Interactive API documentation with Swagger/OpenAPI
+- ✅ Load balancer with Nginx (3 API instances)
+- ✅ High availability and horizontal scalability
 - ✅ Configurable base URL for shortened links
 
 ## 🚀 Technologies
@@ -26,6 +28,7 @@ REST API for shortening URLs, with click tracking and automatic redirection.
 - **[JWT](https://github.com/auth0/node-jsonwebtoken)** - JSON Web Token implementation
 - **[bcrypt](https://github.com/kelektiv/node.bcrypt.js)** - Password hashing library
 - **[Swagger UI Express](https://github.com/scottie1984/swagger-ui-express)** - Auto-generated API documentation
+- **[Nginx](https://nginx.org/)** - High-performance load balancer and reverse proxy
 
 ## 📦 Prerequisites
 
@@ -320,21 +323,44 @@ api/
 
 ## 🐳 Docker
 
-### Using Docker Compose (Recommended)
+### Using Docker Compose with Load Balancer (Recommended)
+
+The project includes **Nginx load balancer** with **3 API instances** for high availability.
 
 ```bash
-# Build and start the container
-docker-compose up -d
+# Build and start all containers (Nginx + 3 API instances)
+docker-compose up -d --build
 
-# View logs
+# View logs from all containers
 docker-compose logs -f
 
-# Stop the container
+# View logs from specific service
+docker-compose logs -f nginx
+docker-compose logs -f api-1
+
+# Check containers status
+docker-compose ps
+
+# Stop all containers
 docker-compose down
 
 # Stop and remove volumes (deletes database)
 docker-compose down -v
 ```
+
+**Architecture:**
+
+- **Nginx** (port 80) - Load balancer distributing requests
+- **api-1, api-2, api-3** - Three instances of the API
+- Shared SQLite database volume
+
+**Access:**
+
+- API via Load Balancer: `http://localhost`
+- Swagger Documentation: `http://localhost/api-docs`
+- Nginx Health: `http://localhost/nginx-health`
+
+📖 **For detailed load balancer configuration, see [LOAD_BALANCER.md](LOAD_BALANCER.md)**
 
 To use a custom base URL with Docker, add `BASE_URL` to the `environment` section in `docker-compose.yml`:
 
