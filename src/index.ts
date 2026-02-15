@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import express from "express";
 import "dotenv/config";
+import express from "express";
 import { adapter } from "./db/db-config.ts";
+import { PrismaClient } from "@prisma/client";
 import { linkRouter } from "./routes/linkRoute.ts";
 import { authRouter } from "./routes/authRoute.ts";
 

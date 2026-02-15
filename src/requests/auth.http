@@ -1,4 +1,5 @@
 @base_url=http://localhost:3000
+@token={{login.response.body.token}}
 
 ### register endpoint
 POST {{base_url}}/auth/register
@@ -11,6 +12,7 @@ Content-Type: application/json
 
 
 ### login route
+# @name login
 POST {{base_url}}/auth/login 
 Content-Type: application/json
 
