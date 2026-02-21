@@ -20,7 +20,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "original": "http://escola.formacao.dev"
+    "original": "https://sacola.magazineluiza.com.br/?f=1#/cliente/login/?next=https://www.magazineluiza.com.br/lava-e-seca-samsung-wd11t-smart-com-ecobubble-11kg-inox-look/p/dd43eh6he5/ed/ela1/?seller_id=samsung"
 }
 
 ### redirect link endpoint

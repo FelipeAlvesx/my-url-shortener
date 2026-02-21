@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Swagger documentation
 app.use(
-    "/api-docs",
+    "/docs",
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, {
         customCss: ".swagger-ui .topbar { display: none }",
@@ -51,7 +51,7 @@ app.get("/health/ping", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
     console.log(
-        `Documentação Swagger disponível em http://localhost:${PORT}/api-docs`,
+        `Documentação Swagger disponível em http://localhost:${PORT}/docs`,
     );
 });
 
