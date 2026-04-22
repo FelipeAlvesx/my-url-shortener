@@ -1,4 +1,4 @@
-@base_url=http://localhost
+@base_url=http://localhost:3000
 @token={{login.response.body.token}}
 
 GET {{base_url}}/health/ping
